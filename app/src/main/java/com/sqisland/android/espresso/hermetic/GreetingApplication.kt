@@ -6,5 +6,8 @@ import android.app.Application
  * Subclass this class in the TestApplication so that we can use Mockito to mock the Clock
  */
 open class GreetingApplication: Application() {
-    open fun provideClock(): Clock = Clock()
+    //Create Dagger component
+    open val component: ApplicationComponent by lazy {
+        DaggerApplicationComponent.builder().clockModule(ClockModule).build()
+    }
 }

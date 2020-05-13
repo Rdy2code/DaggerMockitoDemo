@@ -4,8 +4,13 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import org.joda.time.DateTime
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+
+  @Inject
+  lateinit var clock: Clock
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
@@ -14,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     //The testing framework has a mechanism to instantiate a different application during the test.
     //So, we put the DateTime() class into a different application
     val app = application as GreetingApplication
-    val clock = app.provideClock()
+    app.component.injectClock(this)
     val now = clock.getClock()
 
     val greetingId = when (now.hourOfDay) {

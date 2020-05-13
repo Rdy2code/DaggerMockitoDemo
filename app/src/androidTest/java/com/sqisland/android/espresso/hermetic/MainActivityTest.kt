@@ -20,16 +20,12 @@ class MainActivityTest {
 
     @Test
     fun evening() {
-
+        val clock = Mockito.mock(Clock::class.java)
         val app = InstrumentationRegistry
                 .getInstrumentation()
                 .getTargetContext().applicationContext as TestApplication
+        app.component = DaggerTestComponent.builder().clock(clock).build()
 
-        //Get a reference to the Mockito clock defined in the TestApplication class
-        val clock = app.provideClock()
-
-        //Create mock DateTime object for testing purposes and define its behavior when app asks for current hour
-        //It will substitute the Mockito clock for the normal app clock
         Mockito.`when`(clock.getClock()).thenReturn(DateTime().withHourOfDay(20))
 
         activityRule.launchActivity(null)
