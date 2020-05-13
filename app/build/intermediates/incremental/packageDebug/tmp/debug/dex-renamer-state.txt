@@ -1,0 +1,4 @@
+#Tue May 12 14:02:13 PDT 2020
+base.0=/Users/louiswollenberger/Desktop/Ex_Files_Android_Espresso_Advanced/Exercise Files/Ch02/02_01/Start/app/build/intermediates/dex/debug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
